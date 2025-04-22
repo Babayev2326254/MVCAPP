@@ -1,12 +1,12 @@
-# 1) BASE IMAGE – hansı əsas şəkil üzərində
-FROM openjdk:17-jdk-alpine
-
-# 2) İŞ QOVLUĞU – konteyner içində iş qovluğu təyin et
+# 1. Build stage
+FROM gradle:8.4.0-jdk17 AS builder
 WORKDIR /app
+COPY . .
+RUN gradle clean build --no-daemon
 
-# 3) KOPYALA – hostdakı faylları konteynerə köçür
-#    build/libs/*.jar ShadowJar və ya bootJar ilə build olunmuş jar-ı tapır
-COPY build/libs/*.jar app.jar
-
-# 4) ENTRYPOINT – konteyner run edildikdə hansı komanda icra olunacaq
+# 2. Runtime stage
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
