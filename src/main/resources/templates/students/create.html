@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Student</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+  <h1>Add New Student</h1>
+</header>
+
+<div class="container">
+  <form action="/students" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit" class="button">Add Student</button>
+  </form>
+
+  <a href="/students" class="button">Back to List</a>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>

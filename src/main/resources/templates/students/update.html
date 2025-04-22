@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+xmlns:th="http://www.thymeleaf.org
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Student</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+  <h1>Update Student</h1>
+</header>
+
+<div class="container">
+  <form th:action="@{/students/{id}(id=${student.id})}" method="post">
+    <input type="hidden" name="_method" value="PUT">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:value="${student.name}" required>
+
+    <button type="submit" class="button">Update Student</button>
+  </form>
+
+  <a href="/students" class="button">Back to List</a>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
